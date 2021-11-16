@@ -1,0 +1,11 @@
+{
+	"$schema": "https://json.schemastore.org/block.json",
+	"apiVersion": 2,
+	"name": "flutterwave/flutterwave-for-business",
+	"title": "Flutterwave for Business",
+	"textdomain": "flutterwave-for-business",
+	"icon": "file:./src/flutterwave-logo.svg",
+	"category": "layout",
+	"example": {},
+	"editorScript": "file:./build/index.js"
+}

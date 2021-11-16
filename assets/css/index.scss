@@ -1,0 +1,111 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap");
+
+.editor-styles-wrapper label {
+	font-weight: 300;
+}
+
+.f4b-button {
+	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+		Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif;
+	font-size: 13px;
+	padding: 6px 12px;
+	align-items: center;
+	border: 0;
+	cursor: pointer;
+	-webkit-appearance: none;
+	background: none;
+	transition: box-shadow 0.1s linear;
+	height: 36px;
+	display: inline-flex;
+	text-decoration: none;
+	font-weight: 400;
+	margin: 0;
+	border-radius: 2px;
+}
+
+.f4b-input {
+	margin-bottom: 1em;
+	width: 100%;
+	height: 55px;
+}
+
+div.wp-block-f4b-blocks-form-block figcaption {
+	text-align: center;
+}
+
+#f4b-paynow-button {
+	background: #00a0d2;
+	color: #fff;
+	border-radius: 2px;
+	box-shadow: 0 1px 0 0 #00a0d2;
+}
+
+.f4b-select-input {
+	width: 100%;
+	height: 55px;
+}
+
+.wp-block-f4b-blocks-status-page {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 1em;
+	background-color: #fff;
+}
+
+.f4b-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: "space-between";
+}
+
+.f4b-status-title {
+	font-size: 17px;
+}
+
+#f4b-status-print {
+	display: inline-flex;
+	text-decoration: none;
+	font-weight: 400;
+	font-size: 13px;
+	margin: 0;
+	border: 0;
+	cursor: pointer;
+	-webkit-appearance: none;
+	background: none;
+	transition: box-shadow 0.1s linear;
+	height: 36px;
+	align-items: center;
+	box-sizing: border-box;
+	padding: 6px 12px;
+	border-radius: 2px;
+	color: #1e1e1e;
+}
+
+#f4b-status-cancel {
+	display: inline-flex;
+	text-decoration: none;
+	font-weight: 400;
+	font-size: 13px;
+	margin: 0;
+	border: 0;
+	cursor: pointer;
+	-webkit-appearance: none;
+	background: none;
+	transition: box-shadow 0.1s linear;
+	height: 36px;
+	align-items: center;
+	box-sizing: border-box;
+	padding: 6px 12px;
+	border-radius: 2px;
+	color: #1e1e1e;
+}
+
+#f4b-status-cancel:hover {
+	color: #fff;
+}
+
+#f4b-status-print:hover {
+	color: #fff;
+}
