@@ -24,7 +24,7 @@ import {
 Internal dependencies
 */
 import { blockStyle } from "./index";
-import { Input } from "../form";
+import { Input } from "../../components/form";
 import Header from "./partials";
 
 const Edit = ({ attributes, isSelected, setAttributes }) => {
@@ -37,7 +37,7 @@ const Edit = ({ attributes, isSelected, setAttributes }) => {
 		});
 	};
 
-	const ALLOWED_BLOCKS = ["core/image", "core/paragraph"];
+	const ALLOWED_BLOCKS = ["core/image", "core/paragraph"]; //blocks allowed to be inserted inside the block
 
 	const onChangeTitle = (value) => {
 		setAttributes({ title: value });

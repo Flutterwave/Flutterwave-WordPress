@@ -54,34 +54,21 @@ const Save = ({ attributes, className }) => {
 						</button>
 					</div>
 				</div>
-				<hr />
-				<h6 style={{ textAlign: attributes.alignment }}>
+				<hr className="flwSeperator" />
+				<h6
+					className="flwHeadingText"
+					style={{ textAlign: attributes.alignment }}
+				>
 					{title || "Flutterwave Payment Form"}
 				</h6>
 
 				<InnerBlocks.Content />
 			</div>
 			{/* <Header /> */}
-
-			{/* {
-    "name":"Abraham Olaobaju Jesulayomi",
-    "class": "f4b-payment-form",
-    "Payment": "LIVE",
-    "amount": 10,
-    "email": "olaobajua@gmail.com",
-    "fullname": "Olaobaju Abraham Jesulayomi",
-    "title": "The form of life",
-    "currency": "NGN",
-    "description": "This form is for the kids in the streets",
-    "redirect_url": "https://webhook.site/b0425eb6-f76a-4daf-ab1d-4cf4fd4f2eda"
-} */}
+			<script src="https://checkout.flutterwave.com/v3.js"></script>
 			<form
 				onSubmit={handleSubmit}
 				className="f4b-flutterwave-public-form"
-				action={
-					f4b_data.apiUrl +
-					"/flutterwave-for-business/v1/payments/link"
-				}
 			>
 				<label for="fullName">Full Name</label>
 				<input

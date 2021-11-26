@@ -73,6 +73,7 @@ class F4b_Public {
 		 */
 
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/f4b-flutterwave-public.css', array(), $this->version, 'all' );
+
 	}
 
 	/**
@@ -95,7 +96,6 @@ class F4b_Public {
 		 */
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/f4b-flutterwave-public.js', array( 'jquery' ), $this->version, false );
-
 	}
 
 }

@@ -27,6 +27,7 @@ class WP_F4b_Rest_Route extends WP_REST_Controller{
 
     public function __construct() 
 	{
+		$this->f4b_options = get_option( 'f4bflutterwave_options' );
         add_action( 'rest_api_init', [ $this, 'create_rest_routes' ] );
     }
 
@@ -43,7 +44,7 @@ class WP_F4b_Rest_Route extends WP_REST_Controller{
 		register_rest_route( $this->namespace, "/public/redirect", [
 
             'methods' => WP_REST_Server::READABLE,
-            'callback' => [ $this, 'handle_redirects' ],
+            'callback' => [ $this, 'webhook_handle' ],
             'permission_callback' => [ $this, 'renderLink_permission' ]
 
         ] );
@@ -51,6 +52,7 @@ class WP_F4b_Rest_Route extends WP_REST_Controller{
 
 	public function getPaymentLink(WP_REST_Request $request): WP_REST_Response 
 	{
+		$token = $this->f4b_options['secret_key'];
 		$body = array(
 			"tx_ref" => "WP_FLW|". Date('YmdHis'). "|". rand(100, 999),
 			"amount" => $request->get_param('amount'),
@@ -74,12 +76,10 @@ class WP_F4b_Rest_Route extends WP_REST_Controller{
 			),
 		);
 
-		$token = "Bearer FLWSECK_TEST-1609ba49bee599841c9a590a97984685-X";
-
 		$response = wp_remote_post("https://api.flutterwave.com/v3/payments", array(
             'headers' => array(
                 'Content-Type' => 'application/json',
-                'Authorization' => $token
+                'Authorization' => "Bearer ".$token
             ),
             'body' => json_encode($body)
         ) );
@@ -98,7 +98,7 @@ class WP_F4b_Rest_Route extends WP_REST_Controller{
 		return true;
 	}
 
-	public function handle_redirects(WP_REST_Request $request)
+	public function webhook_handle(WP_REST_Request $request)
 	{
 		//render spinner and redirect to status page
 		echo "verifying Transaction ...";
@@ -106,7 +106,7 @@ class WP_F4b_Rest_Route extends WP_REST_Controller{
 
 		if($request->get_param('transaction_id') == null || empty($request->get_param('transaction_id')))
 		{
-			return new WP_REST_Response( 'Transaction ID is required', 400 );
+			//return new WP_REST_Response( 'Transaction ID is required', 400 );
 		}
 
 		$result = $this->verify_transaction($request->get_param('transaction_id'));
@@ -115,8 +115,8 @@ class WP_F4b_Rest_Route extends WP_REST_Controller{
 		{
 			//get success url from the database
 			$success_url = get_option('f4b_success_url');
-			wp_redirect("https://www.google.com");
-			return new WP_REST_Response( "https://www.google.com", 200 );
+			
+			return new WP_REST_Response( $request->get_param('tx_ref'), 200 );
 		}
 		else
 		{
@@ -128,12 +128,12 @@ class WP_F4b_Rest_Route extends WP_REST_Controller{
 
 	public function verify_transaction($id)
 	{
-		$token = "Bearer FLWSECK_TEST-1609ba49bee599841c9a590a97984685-X";
+		$token = $this->f4b_options['secret_key'];
 
 		$response = wp_remote_get("https://api.flutterwave.com/v3/transactions/$id/verify", array(
 			'headers' => array(
 				'Content-Type' => 'application/json',
-				'Authorization' => $token
+				'Authorization' => "Bearer ".$token
 			)
 		) );
 
