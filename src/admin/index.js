@@ -16,7 +16,9 @@ window.addEventListener("DOMContentLoaded", () => {
 
 	const notice = document.querySelector(".notice");
 
-	notice.style.display = "none";
+	if (notice) {
+		notice.style.display = "none";
+	}
 
 	if (wpbody && element && wpcontent) {
 		wpbody.style.backgroundColor = "white";
