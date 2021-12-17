@@ -16,13 +16,16 @@ Internal dependencies
 import { blockStyle } from "./index";
 
 const Save = ({ attributes, className }) => {
-	const { title, alignment } = attributes;
+	const { title, alignment, bg_color, text_color } = attributes;
 
 	const handleSubmit = (e) => console.log("hey the form submitted");
 	const blockProps = useBlockProps.save();
 
 	return (
-		<div {...blockProps} style={{ ...blockStyle }}>
+		<div
+			{...blockProps}
+			style={{ ...blockStyle, backgroundColor: bg_color }}
+		>
 			{/* <BaseControl id="textarea-1" label="Text" help="Enter some text">
 				<textarea id="textarea-1" />
 			</BaseControl> */}

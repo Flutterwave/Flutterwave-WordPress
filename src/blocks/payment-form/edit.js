@@ -26,9 +26,10 @@ Internal dependencies
 import { blockStyle } from "./index";
 import { Input } from "../../components/form";
 import Header from "./partials";
+import { background } from "@chakra-ui/react";
 
 const Edit = ({ attributes, isSelected, setAttributes }) => {
-	const { title, alignment } = attributes;
+	const { title, alignment, text_color, bg_color } = attributes;
 	const handleSubmit = (e) => e.preventDefault();
 	const blockProps = useBlockProps({ style: blockStyle });
 	const onChangeAlignment = (newAlignment) => {
@@ -50,6 +51,8 @@ const Edit = ({ attributes, isSelected, setAttributes }) => {
 	const onChangeTextColor = (hexColor) => {
 		setAttributes({ text_color: hexColor });
 	};
+
+	blockProps.style.backgroundColor = bg_color;
 
 	return (
 		<div {...blockProps}>
@@ -139,7 +142,7 @@ const Edit = ({ attributes, isSelected, setAttributes }) => {
 						"flutterwave-for-business"
 					)}
 					value={title}
-					style={{ textAlign: "center" }}
+					style={{ textAlign: "center", color: text_color }}
 					onChange={onChangeTitle}
 				/>
 
