@@ -81,7 +81,7 @@ function f4b_admin_menu()
 
     // if('')
     add_menu_page(
-        'flutterwave', //page title 
+        'flutterwave', //page title
         'Flutterwave', //menu title
         'manage_options', //capabilities
         'f4b', //menu slug
@@ -108,7 +108,28 @@ require_once(WC_F4B_DIR_PATH . 'includes/admin-view.php');
 
 require_once(WC_F4B_DIR_PATH . 'bootstrap.php');
 
-/** 
+
+function f4b_elementor_widgets( $widgets_manager ) {
+
+	require_once( __DIR__ . '/widgets/flutterwave-widget.php' );
+
+	$widgets_manager->register( new \Elementor_F4b_Widget() );
+
+}
+
+
+function add_flutterwave_elementor_widget_categories( $elements_manager ) {
+
+	$elements_manager->add_category(
+		'flutterwave-blocks',
+		[
+			'title' => esc_html__( 'Flutterwave Blocks', 'flutterwave-for-business' ),
+			'icon' => 'fa fa-plug',
+		]
+	);
+}
+
+/**
  * custom option
  */
 function f4bflutterwave_settings_init()
@@ -132,7 +153,14 @@ function f4bflutterwave_settings_init()
 
     // $value = serialize($data);
     add_option('f4bflutterwave_options', $data);
+
+	if (is_plugin_active( 'elementor/elementor.php' )) {
+		add_action( 'elementor/widgets/widgets_registered', 'f4b_elementor_widgets' );
+		add_action( 'elementor/elements/categories_registered', 'add_flutterwave_elementor_widget_categories' );
+	}
 }
+
+
 
 /**
  * Register our f4bflutterwave_settings_init to the admin_init action hook.
