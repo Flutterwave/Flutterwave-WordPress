@@ -16,8 +16,6 @@
  * @package         Flutterwave_For_Business
  */
 
-if( defined( 'ABSPATH')) return exit;
-
 define('WC_F4B_VERSION', '1.1.0');
 define('WC_F4B_PLUGIN_FILE', __FILE__);
 define('WC_F4B_DIR_PATH', plugin_dir_path(WC_F4B_PLUGIN_FILE));
