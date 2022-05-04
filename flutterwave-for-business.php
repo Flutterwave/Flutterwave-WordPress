@@ -10,17 +10,18 @@
  * Domain Path:     /languages
  * Version:         1.1.0
  *
+ * Elementor tested up to: 3.5.0
+ * Elementor Pro tested up to: 3.5.0
+ *
  * @package         Flutterwave_For_Business
  */
+
+if( defined( 'ABSPATH')) return exit;
 
 define('WC_F4B_VERSION', '1.1.0');
 define('WC_F4B_PLUGIN_FILE', __FILE__);
 define('WC_F4B_DIR_PATH', plugin_dir_path(WC_F4B_PLUGIN_FILE));
 define('WC_F4B_URL', trailingslashit(plugins_url('/', __FILE__)));
-
-
-
-
 
 /**
  * Activate the plugin.
@@ -108,16 +109,6 @@ require_once(WC_F4B_DIR_PATH . 'includes/admin-view.php');
 
 require_once(WC_F4B_DIR_PATH . 'bootstrap.php');
 
-
-function f4b_elementor_widgets( $widgets_manager ) {
-
-	require_once( __DIR__ . '/widgets/flutterwave-widget.php' );
-
-	$widgets_manager->register( new \Elementor_F4b_Widget() );
-
-}
-
-
 function add_flutterwave_elementor_widget_categories( $elements_manager ) {
 
 	$elements_manager->add_category(
@@ -155,8 +146,9 @@ function f4bflutterwave_settings_init()
     add_option('f4bflutterwave_options', $data);
 
 	if (is_plugin_active( 'elementor/elementor.php' )) {
-		add_action( 'elementor/widgets/widgets_registered', 'f4b_elementor_widgets' );
 		add_action( 'elementor/elements/categories_registered', 'add_flutterwave_elementor_widget_categories' );
+		//check if flutterwave for elementor is installed
+
 	}
 }
 
