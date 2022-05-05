@@ -107,17 +107,6 @@ require_once(WC_F4B_DIR_PATH . 'includes/admin-view.php');
 
 require_once(WC_F4B_DIR_PATH . 'bootstrap.php');
 
-function add_flutterwave_elementor_widget_categories( $elements_manager ) {
-
-	$elements_manager->add_category(
-		'flutterwave-blocks',
-		[
-			'title' => esc_html__( 'Flutterwave Blocks', 'flutterwave-for-business' ),
-			'icon' => 'fa fa-plug',
-		]
-	);
-}
-
 /**
  * custom option
  */
@@ -142,12 +131,6 @@ function f4bflutterwave_settings_init()
 
     // $value = serialize($data);
     add_option('f4bflutterwave_options', $data);
-
-	if (is_plugin_active( 'elementor/elementor.php' )) {
-		add_action( 'elementor/elements/categories_registered', 'add_flutterwave_elementor_widget_categories' );
-		//check if flutterwave for elementor is installed
-
-	}
 }
 
 
