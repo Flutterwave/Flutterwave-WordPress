@@ -85,7 +85,7 @@ class WP_F4b_Transactions_Rest_Route extends WP_REST_Controller{
 		$success_url = $this->f4b_options['success_redirect_url'];
 		$failer_url = $this->f4b_options['failed_redirect_url'];
 		$txref = $request->get_param('txref');
-		$url = 'https://api.flutterwave.com/v3/transactions/'+ $txref;
+		$url = 'https://api.flutterwave.com/v3/transactions/'. $txref;
 		$response = wp_remote_get( $url, [
 			'headers' => [
 				'Content-Type' => 'application/json',
